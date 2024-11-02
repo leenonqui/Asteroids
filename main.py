@@ -46,7 +46,14 @@ def main():
         for item in drawable:
             item.draw(screen)
 
-        # chacks for collisions
+
+        for asteroid in asteroids:
+            for shot in shots:
+                if shot.collision(asteroid):
+                    asteroid.kill()
+                    shot.kill()
+
+        # chacks for collisions player asteroid
         for asteroid in asteroids:
             if player.collision(asteroid):
                 pygame.quit()
@@ -57,7 +64,7 @@ def main():
         pygame.display.flip()
 
         #limit the framerate to 60 FPS
-        dt = clock.tick(FPS) #60fps / 1000
+        dt = clock.tick(FPS)/1000 #60fps
 
 
 
